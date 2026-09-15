@@ -156,13 +156,13 @@ class ValidationUtility(BaseUtility):
         ]
 
         if not extra_in_expected.empty:
-            extra_in_expected.to_csv(
+            extra_in_expected[sort_cols].to_csv(
                 f"differences/{test_case_name}_extra_in_expected.csv",
                 index=False
             )
 
         if not extra_in_actual.empty:
-            extra_in_actual.to_csv(
+            extra_in_actual[sort_cols].to_csv(
                 f"differences/{test_case_name}_extra_in_actual.csv",
                 index=False
             )
