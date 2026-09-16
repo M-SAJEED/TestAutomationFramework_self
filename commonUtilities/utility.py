@@ -178,20 +178,27 @@ class SchemaValidationUtitily(BaseUtility):
         try:
             query =f'''select * from {table_name}'''
             self.log_info(f"{test_case_name}: column Validation started for {table_name} table...")
-            actual_col_not_avialble =[]
+            actual_col_not_available =[]
+            expected_col_not_avialble = []
             actual_df = pd.read_sql(query, actual_db)
             actual_col_set = set(actual_df.columns)
             len_of_actual_col=len(actual_col_set)
             len_of_expected_col=len(expected_columns)
-            if (len_of_expected_col != len_of_actual_col) and (set(expected_columns)!=actual_col_set):
+            if (len_of_expected_col != len_of_actual_col) or (set(expected_columns)!=actual_col_set):
                 for col in expected_columns:
                     if col not in actual_col_set:
-                        actual_col_not_avialble.append(col)
+                        actual_col_not_available.append(col)
+                for col in actual_col_set:
+                    if col not in expected_columns:
+                        expected_col_not_avialble.append(col)
             assert len_of_expected_col==len_of_actual_col , (f'column count mismatch expected_col:{len_of_expected_col} '
                                                              f'actual_col_set:{len_of_actual_col}'
-                                                             f'column not available is {actual_col_not_avialble}')
+                                                             f'extra col in expected {actual_col_not_available}'
+                                                             f'extra col in actual {expected_col_not_avialble}'
+                                                             )
 
-            assert  actual_col_not_avialble is False,f'unavailable columns are {actual_col_not_avialble}'
+            assert not actual_col_not_available ,f'unavailable columns are {actual_col_not_available} in actual but available in expected'
+            assert not expected_col_not_avialble, f'unavailable columns are {expected_col_not_avialble} in expected but available in actual'
             self.log_info(f"{test_case_name}: column Validation completed successfully!")
         except Exception as e:
             self.log_error(str(e))
@@ -204,11 +211,12 @@ class SchemaValidationUtitily(BaseUtility):
             self.log_info(f"{test_case_name}: datatype Validation started for {table_name} table...")
             mismatch_dtypes = {}
             actual_df = pd.read_sql(query, actual_db)
+            print(actual_df.dtypes)
 
             for col,expect_dtype in expected_dtypes.items():
                 if actual_df[col].dtype not in expect_dtype:
                     mismatch_dtypes[col] =f"expected:{expect_dtype} - actual:{actual_df[col].dtype}"
-            assert  mismatch_dtypes is False, f'datatypes mismatch: {mismatch_dtypes}'
+            assert not mismatch_dtypes , f'datatypes mismatch: {mismatch_dtypes}'
             self.log_info(f"{test_case_name}: datatype Validation completed successfully!")
         except Exception as e:
             self.log_error(str(e))
@@ -223,10 +231,11 @@ class DataQualityValidationUtility(BaseUtility):
         try:
             self.log_info(f"{test_case_name}: duplicate  validation started for file {file_path}")
             df = self.readfile(file_path=file_path,file_type=file_type)
-            duplicate_df=df[~df.duplicated(subset=subset_col,keep="first")]
-            duplicate_df.to_csv('differences/duplicates/'+test_case_name+'_duplicates.csv',index=False)
+            duplicate_df=df[df.duplicated(subset=subset_col,keep="first")]
+            if not duplicate_df.empty:
+                duplicate_df.to_csv('differences/duplicates/'+test_case_name+'_duplicates.csv',index=False)
 
-            assert duplicate_df.empty is True , f'{test_case_name}: duplicate file validation failed. refer differences/duplicates folder'
+            assert duplicate_df.empty , f'{test_case_name}: duplicate file validation failed. refer differences/duplicates folder'
             self.log_info(f"{test_case_name}: duplicate validation for file {file_path} completed successfully!")
         except Exception as e:
             self.log_error(str(e))

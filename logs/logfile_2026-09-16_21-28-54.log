@@ -1,0 +1,34 @@
+2026-09-16 21:28:55,084-INFO-connecting to mysql server...
+2026-09-16 21:28:55,243-INFO-mysql server connected.
+2026-09-16 21:28:55,244-INFO-test_duplicates_for_sales_file: duplicate  validation started for file testData/sales_data_s3.csv
+2026-09-16 21:28:55,244-INFO-started reading file testData/sales_data_s3.csv filetypecsv
+2026-09-16 21:28:55,260-INFO-completed reading file testData/sales_data_s3.csv filetypecsv
+2026-09-16 21:28:55,283-INFO-test_duplicates_for_sales_file: duplicate validation for file testData/sales_data_s3.csv completed successfully!
+2026-09-16 21:28:55,292-INFO-test_duplicates_for_product_file: duplicate  validation started for file testData/product_data_from_linux.csv
+2026-09-16 21:28:55,293-INFO-started reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-16 21:28:55,298-INFO-completed reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-16 21:28:55,309-ERROR-test_duplicates_for_product_file: duplicate file validation failed. refer differences/duplicates folder
+2026-09-16 21:28:55,526-INFO-test_duplicates_for_inventory_file: duplicate  validation started for file testData/inventory_data.xml
+2026-09-16 21:28:55,526-INFO-started reading file testData/inventory_data.xml filetypexml
+2026-09-16 21:28:55,568-INFO-completed reading file testData/inventory_data.xml filetypexml
+2026-09-16 21:28:55,569-INFO-test_duplicates_for_inventory_file: duplicate validation for file testData/inventory_data.xml completed successfully!
+2026-09-16 21:28:55,572-INFO-test_duplicates_for_supplier_file: duplicate  validation started for file testData/supplier_data.json
+2026-09-16 21:28:55,572-INFO-started reading file testData/supplier_data.json filetypejson
+2026-09-16 21:28:55,581-INFO-completed reading file testData/supplier_data.json filetypejson
+2026-09-16 21:28:55,582-INFO-test_duplicates_for_supplier_file: duplicate validation for file testData/supplier_data.json completed successfully!
+2026-09-16 21:28:55,585-INFO-test_null_for_sales_file: duplicate file validation started for testData/sales_data_s3.csv
+2026-09-16 21:28:55,585-INFO-started reading file testData/sales_data_s3.csv filetypecsv
+2026-09-16 21:28:55,589-INFO-completed reading file testData/sales_data_s3.csv filetypecsv
+2026-09-16 21:28:55,589-INFO-test_null_for_sales_file: null  validation for file testData/sales_data_s3.csv completed successfully!
+2026-09-16 21:28:55,594-INFO-test_null_for_product_file: duplicate  validation started for file testData/product_data_from_linux.csv
+2026-09-16 21:28:55,594-INFO-started reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-16 21:28:55,597-INFO-completed reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-16 21:28:55,600-ERROR-test_null_for_product_file: duplicate file validation failed. refer differences/duplicates folder
+2026-09-16 21:28:55,618-INFO-test_null_for_inventory_file: duplicate  validation started for file testData/inventory_data.xml
+2026-09-16 21:28:55,618-INFO-started reading file testData/inventory_data.xml filetypexml
+2026-09-16 21:28:55,622-INFO-completed reading file testData/inventory_data.xml filetypexml
+2026-09-16 21:28:55,622-INFO-test_null_for_inventory_file: duplicate validation for file testData/inventory_data.xml completed successfully!
+2026-09-16 21:28:55,626-INFO-test_null_for_supplier_file: duplicate  validation started for file testData/supplier_data.json
+2026-09-16 21:28:55,626-INFO-started reading file testData/supplier_data.json filetypejson
+2026-09-16 21:28:55,632-INFO-completed reading file testData/supplier_data.json filetypejson
+2026-09-16 21:28:55,633-INFO-test_null_for_supplier_file: duplicate validation for file testData/supplier_data.json completed successfully!

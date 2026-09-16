@@ -1,0 +1,267 @@
+create database capstone_project;
+
+use self_capstone_project;
+select count(*) from stag_product;
+select count(*) from stag_inventory;
+select count(*) from stag_supplier;
+select * from stag_stores;
+select count(*) from stag_sales;
+
+desc sales_with_details;
+select * from sales_with_details;
+select * from monthly_sales_summary_source;
+select * from low_sales;
+select * from filtered_sales;
+select * from high_sales;
+select * from aggregated_inventory_level;
+/* check negative scenario */
+insert into aggregated_inventory_level values(100,240);
+
+delete from aggregated_inventory_level where store_id =100 ;
+commit;
+#fact table DDL scripts
+CREATE TABLE  fact_sales (sales_id INT PRIMARY KEY,product_id INT,store_id INT,quantity INT,total_sales DECIMAL(10, 2),sale_date DATE);
+CREATE TABLE fact_inventory (
+product_id INT,
+store_id INT,
+quantity_on_hand INT,
+last_updated DATE,
+PRIMARY KEY (product_id, store_id)
+);
+CREATE TABLE monthly_sales_summary (
+product_id INT,
+month INT,
+year INT,
+total_sales DECIMAL(10, 2),
+PRIMARY KEY (product_id, month,year)
+);
+CREATE TABLE inventory_levels_by_store (
+store_id INT PRIMARY KEY,
+total_inventory INT
+);
+select @@autocommit;
+insert into fact_sales (sales_id,product_id,store_id) values(100,200,300);
+commit;
+select * from fact_sales;
+select * from fact_inventory;
+select * from monthly_sales_summary;
+select * from inventory_levels_by_store;
+
+desc fact_sales;
+desc fact_inventory;
+desc monthly_sales_summary;
+desc inventory_levels_by_store;
+
+#truncate facts
+use self_capstone_project;
+truncate table fact_sales;
+truncate table fact_inventory;
+truncate table monthly_sales_summary;
+truncate table inventory_levels_by_store;
+
+
+create database self_capstone_project;
+use self_capstone_project;
+
+select @@autocommit
+
+
+
+----------------------------------------------------------------------------------------------------
+
+/*
+drop table Sales_Processed;
+drop table Customer_Processed;
+drop table employee_Processed;
+drop table products_Processed;
+drop table OrderDetails;
+*/
+select @@transaction_isolation;
+use learning;
+select @@autocommit;
+----------------
+CREATE TABLE Sales_Processed (
+    SaleID INT PRIMARY KEY,
+    ProductID VARCHAR(10),
+    Quantity INT,
+    UnitPrice DECIMAL(10,2),
+    Discount DECIMAL(4,2)
+);
+INSERT INTO Sales_Processed VALUES (1, 'P001', 2, 50.00, 0.10);
+INSERT INTO Sales_Processed VALUES (2, 'P002', 1, 100.00, 0.00);
+INSERT INTO Sales_Processed VALUES (3, 'P003', 5, 20.00, 0.15);
+INSERT INTO Sales_Processed VALUES (4, 'P004', 3, 75.00, 0.05);
+INSERT INTO Sales_Processed VALUES (5, 'P005', 4, 30.00, 0.00);
+INSERT INTO Sales_Processed VALUES (6, 'P006', 1, 200.00, 0.20);
+INSERT INTO Sales_Processed VALUES (7, 'P007', 2, 10.00, 0.10);
+INSERT INTO Sales_Processed VALUES (8, 'P008', 6, 15.00, 0.05);
+INSERT INTO Sales_Processed VALUES (9, 'P009', 1, 80.00, 0.00);
+INSERT INTO Sales_Processed VALUES (10, 'P010', 7, 12.00, 0.10);
+INSERT INTO Sales_Processed VALUES (11, 'P011', 2, 25.00, 0.00);
+INSERT INTO Sales_Processed VALUES (12, 'P012', 5, 60.00, 0.10);
+INSERT INTO Sales_Processed VALUES (13, 'P013', 3, 40.00, 0.05);
+INSERT INTO Sales_Processed VALUES (14, 'P014', 2, 70.00, 0.00);
+INSERT INTO Sales_Processed VALUES (15, 'P015', 4, 55.00, 0.10);
+
+
+
+CREATE TABLE Customer_Processed (
+    CustomerID VARCHAR(10) PRIMARY KEY,
+    Name VARCHAR(50),
+    Phone VARCHAR(20)
+);
+INSERT INTO Customer_Processed VALUES ('C001', 'Alice', '+1-123-456-7890');
+INSERT INTO Customer_Processed VALUES ('C002', 'Bob', '+1-987-654-3210');
+INSERT INTO Customer_Processed VALUES ('C003', 'Charlie', '+1-555-123-4567');
+INSERT INTO Customer_Processed VALUES ('C004', 'David', '+1-222-333-4444');
+INSERT INTO Customer_Processed VALUES ('C005', 'Emma', '+1-444-555-6666');
+INSERT INTO Customer_Processed VALUES ('C006', 'Frank', '+1-333-444-5555');
+INSERT INTO Customer_Processed VALUES ('C007', 'Grace', '+1-888-777-6666');
+INSERT INTO Customer_Processed VALUES ('C008', 'Hannah', '+1-111-222-3333');
+INSERT INTO Customer_Processed VALUES ('C009', 'Ian', '+1-999-888-7777');
+INSERT INTO Customer_Processed VALUES ('C010', 'Jack', '+1-765-432-1000');
+INSERT INTO Customer_Processed VALUES ('C011', 'Karen', '+1-555-666-7777');
+INSERT INTO Customer_Processed VALUES ('C012', 'Leo', '+1-222-333-4444');
+INSERT INTO Customer_Processed VALUES ('C013', 'Mia', '+1-111-333-5555');
+INSERT INTO Customer_Processed VALUES ('C014', 'Noah', '+1-123-456-7890');
+INSERT INTO Customer_Processed VALUES ('C015', 'Olivia', '+1-321-654-0987');
+
+
+CREATE TABLE Employee_Processed (
+    EmpID VARCHAR(10) PRIMARY KEY,
+    Name VARCHAR(50),
+    Salary DECIMAL(10,2),
+    SalaryFlag VARCHAR(10)
+);
+INSERT INTO Employee_Processed VALUES ('E001', 'Alice', 4000.00, 'Low');
+INSERT INTO Employee_Processed VALUES ('E002', 'Bob', 12000.00, 'High');
+INSERT INTO Employee_Processed VALUES ('E003', 'Charlie', 6000.00, 'Medium');
+INSERT INTO Employee_Processed VALUES ('E004', 'David', 9500.00, 'Medium');
+INSERT INTO Employee_Processed VALUES ('E005', 'Eva', 3000.00, 'Low');
+INSERT INTO Employee_Processed VALUES ('E006', 'Frank', 10000.00, 'High');
+INSERT INTO Employee_Processed VALUES ('E007', 'Grace', 4700.00, 'Low');
+INSERT INTO Employee_Processed VALUES ('E008', 'Hannah', 8200.00, 'Medium');
+INSERT INTO Employee_Processed VALUES ('E009', 'Ian', 5100.00, 'Medium');
+INSERT INTO Employee_Processed VALUES ('E010', 'Jack', 15000.00, 'High');
+INSERT INTO Employee_Processed VALUES ('E011', 'Kate', 2800.00, 'Low');
+INSERT INTO Employee_Processed VALUES ('E012', 'Leo', 7000.00, 'Medium');
+INSERT INTO Employee_Processed VALUES ('E013', 'Mia', 9200.00, 'Medium');
+INSERT INTO Employee_Processed VALUES ('E014', 'Noah', 11000.00, 'High');
+INSERT INTO Employee_Processed VALUES ('E015', 'Olivia', 4300.00, 'Low');
+
+
+
+
+CREATE TABLE Products_Processed (
+    ProductID VARCHAR(10) PRIMARY KEY,
+    ProductCode VARCHAR(20) UNIQUE,
+    ProductName VARCHAR(50)
+);
+INSERT INTO Products_Processed VALUES ('P001', 'PRD001', 'Pen');
+INSERT INTO Products_Processed VALUES ('P002', 'PRD002', 'Pencil');
+INSERT INTO Products_Processed VALUES ('P003', 'PRD003', 'Notebook');
+INSERT INTO Products_Processed VALUES ('P004', 'PRD004', 'Eraser');
+INSERT INTO Products_Processed VALUES ('P005', 'PRD005', 'Sharpener');
+INSERT INTO Products_Processed VALUES ('P006', 'PRD006', 'Scale');
+INSERT INTO Products_Processed VALUES ('P007', 'PRD007', 'Marker');
+INSERT INTO Products_Processed VALUES ('P008', 'PRD008', 'Chalk');
+INSERT INTO Products_Processed VALUES ('P009', 'PRD009', 'Duster');
+INSERT INTO Products_Processed VALUES ('P010', 'PRD010', 'Board');
+INSERT INTO Products_Processed VALUES ('P011', 'PRD011', 'Ink');
+INSERT INTO Products_Processed VALUES ('P012', 'PRD012', 'Glue');
+INSERT INTO Products_Processed VALUES ('P013', 'PRD013', 'Scissors');
+INSERT INTO Products_Processed VALUES ('P014', 'PRD014', 'Cutter');
+-- Duplicate 'PRD001' (P015) excluded
+
+
+CREATE TABLE Orders_Processed (
+    OrderID VARCHAR(10) PRIMARY KEY,
+    OrderDate DATE,
+    CustomerName VARCHAR(50)
+);
+
+INSERT INTO Orders_Processed VALUES ('O001', '2025-09-01', 'Amit Sharma');
+INSERT INTO Orders_Processed VALUES ('O002', '2025-09-02', 'Priya Singh');
+INSERT INTO Orders_Processed VALUES ('O003', '2025-09-03', 'Ravi Kumar');
+INSERT INTO Orders_Processed VALUES ('O004', '2025-09-04', 'Sneha Patel');
+INSERT INTO Orders_Processed VALUES ('O005', '2025-09-05', 'Arjun Mehta');
+INSERT INTO Orders_Processed VALUES ('O006', '2025-09-06', 'Neha Verma');
+INSERT INTO Orders_Processed VALUES ('O007', '2025-09-07', 'Rohan Das');
+INSERT INTO Orders_Processed VALUES ('O008', '2025-09-08', 'Kiran Rao');
+INSERT INTO Orders_Processed VALUES ('O009', '2025-09-09', 'Manish Gupta');
+INSERT INTO Orders_Processed VALUES ('O010', '2025-09-10', 'Anjali Nair');
+INSERT INTO Orders_Processed VALUES ('O011', '2025-09-11', 'Suresh Iyer');
+INSERT INTO Orders_Processed VALUES ('O012', '2025-09-12', 'Pooja Joshi');
+INSERT INTO Orders_Processed VALUES ('O013', '2025-09-13', 'Rajesh Pillai');
+INSERT INTO Orders_Processed VALUES ('O014', '2025-09-14', 'Meera Reddy');
+INSERT INTO Orders_Processed VALUES ('O015', '2025-09-15', 'Vikram Malhotra');
+
+
+
+CREATE TABLE OrderDetails (
+    DetailID INT PRIMARY KEY,
+    OrderID VARCHAR(10),
+    ItemCode VARCHAR(10),
+    Qty INT,
+    FOREIGN KEY (OrderID) REFERENCES Orders_Processed(OrderID)
+);
+INSERT INTO OrderDetails VALUES (1, 'O001', 'IT001', 2);
+INSERT INTO OrderDetails VALUES (2, 'O002', 'IT002', 1);
+INSERT INTO OrderDetails VALUES (3, 'O003', 'IT003', 3);
+INSERT INTO OrderDetails VALUES (4, 'O004', 'IT004', 1);
+INSERT INTO OrderDetails VALUES (5, 'O005', 'IT005', 2);
+INSERT INTO OrderDetails VALUES (6,'O006', 'IT006', 5);
+INSERT INTO OrderDetails VALUES (7, 'O007', 'IT007', 1);
+INSERT INTO OrderDetails VALUES (8, 'O008', 'IT008', 4);
+INSERT INTO OrderDetails VALUES (9, 'O009', 'IT009', 2);
+INSERT INTO OrderDetails VALUES (10, 'O010', 'IT010', 6);
+INSERT INTO OrderDetails VALUES (11, 'O011', 'IT011', 2);
+INSERT INTO OrderDetails VALUES (12, 'O012', 'IT012', 1);
+INSERT INTO OrderDetails VALUES (13, 'O013', 'IT013', 2);
+INSERT INTO OrderDetails VALUES (14, 'O014', 'IT014', 4);
+INSERT INTO OrderDetails VALUES (15, 'O015', 'IT015', 3);
+
+commit;
+
+select * from  Sales_Processed order by 1;
+select * from  Customer_Processed where phone not regexp  ('^\\+[1-9]{1,3}-[0-9]{3}-[0-9]{3}-[0-9]{4}$');
+select * from employee_Processed;
+select* from products_Processed  ;
+select * from  OrderDetails;
+use capstone_project;
+create database capstone_project;
+select * from stg_product;
+
+
+CREATE TABLE fact_sales (
+sales_id INT PRIMARY KEY,
+product_id INT,
+store_id INT,
+quantity INT,
+total_sales DECIMAL(10, 2),
+sale_date DATE
+);
+CREATE TABLE fact_inventory (
+product_id INT,
+store_id INT,
+quantity_on_hand INT,
+last_updated DATE,
+PRIMARY KEY (product_id, store_id)
+);
+CREATE TABLE monthly_sales_summary (
+product_id INT,
+month INT,
+year INT,
+total_sales DECIMAL(10, 2),
+PRIMARY KEY (product_id, month,year)
+);
+CREATE TABLE inventory_levels_by_store (
+store_id INT PRIMARY KEY,
+total_inventory INT
+);
+
+
+
+
+
+
