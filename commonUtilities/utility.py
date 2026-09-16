@@ -156,13 +156,13 @@ class ValidationUtility(BaseUtility):
         ]
 
         if not extra_in_expected.empty:
-            extra_in_expected.to_csv(
+            extra_in_expected[sort_cols].to_csv(
                 f"differences/{test_case_name}_extra_in_expected.csv",
                 index=False
             )
 
         if not extra_in_actual.empty:
-            extra_in_actual.to_csv(
+            extra_in_actual[sort_cols].to_csv(
                 f"differences/{test_case_name}_extra_in_actual.csv",
                 index=False
             )
@@ -171,4 +171,79 @@ class ValidationUtility(BaseUtility):
                 {test_case_name}: Records are not matching.
                 f"Refer differences folder.'''
 
+
+class SchemaValidationUtitily(BaseUtility):
+
+    def validate_columns(self, test_case_name,actual_db,table_name,expected_columns):
+        try:
+            query =f'''select * from {table_name}'''
+            self.log_info(f"{test_case_name}: column Validation started for {table_name} table...")
+            actual_col_not_avialble =[]
+            actual_df = pd.read_sql(query, actual_db)
+            actual_col_set = set(actual_df.columns)
+            len_of_actual_col=len(actual_col_set)
+            len_of_expected_col=len(expected_columns)
+            if (len_of_expected_col != len_of_actual_col) and (set(expected_columns)!=actual_col_set):
+                for col in expected_columns:
+                    if col not in actual_col_set:
+                        actual_col_not_avialble.append(col)
+            assert len_of_expected_col==len_of_actual_col , (f'column count mismatch expected_col:{len_of_expected_col} '
+                                                             f'actual_col_set:{len_of_actual_col}'
+                                                             f'column not available is {actual_col_not_avialble}')
+
+            assert  actual_col_not_avialble is False,f'unavailable columns are {actual_col_not_avialble}'
+            self.log_info(f"{test_case_name}: column Validation completed successfully!")
+        except Exception as e:
+            self.log_error(str(e))
+            pytest.fail(str(e))
+
+
+    def validate_datatype_of_col(self, test_case_name,actual_db,table_name,expected_dtypes:dict):
+        try:
+            query = f'''select * from {table_name}'''
+            self.log_info(f"{test_case_name}: datatype Validation started for {table_name} table...")
+            mismatch_dtypes = {}
+            actual_df = pd.read_sql(query, actual_db)
+
+            for col,expect_dtype in expected_dtypes.items():
+                if actual_df[col].dtype not in expect_dtype:
+                    mismatch_dtypes[col] =f"expected:{expect_dtype} - actual:{actual_df[col].dtype}"
+            assert  mismatch_dtypes is False, f'datatypes mismatch: {mismatch_dtypes}'
+            self.log_info(f"{test_case_name}: datatype Validation completed successfully!")
+        except Exception as e:
+            self.log_error(str(e))
+            pytest.fail(str(e))
+
+#duplicate checks
+#null checks
+#data integrity checks
+class DataQualityValidationUtility(BaseUtility):
+    #duplicate checks for entire row by keeping subset_col as None or pass list of columns
+    def validate_duplicates_in_file(self,test_case_name,file_type,file_path,subset_col=None):
+        try:
+            self.log_info(f"{test_case_name}: duplicate  validation started for file {file_path}")
+            df = self.readfile(file_path=file_path,file_type=file_type)
+            duplicate_df=df[~df.duplicated(subset=subset_col,keep="first")]
+            duplicate_df.to_csv('differences/duplicates/'+test_case_name+'_duplicates.csv',index=False)
+
+            assert duplicate_df.empty is True , f'{test_case_name}: duplicate file validation failed. refer differences/duplicates folder'
+            self.log_info(f"{test_case_name}: duplicate validation for file {file_path} completed successfully!")
+        except Exception as e:
+            self.log_error(str(e))
+            pytest.fail(str(e))
+
+    def validate_nulls_in_file(self, test_case_name, file_type, file_path, subset_col=None):
+        try:
+            self.log_info(f"{test_case_name}: duplicate file validation started for {file_path}")
+            df = self.readfile(file_path=file_path, file_type=file_type)
+            is_cols_null=False
+            if subset_col is not None:
+                is_cols_null = df[subset_col].isnull().values.any()
+            else:
+                is_cols_null = df.isnull().values.any()
+            assert not is_cols_null , f'{test_case_name}: null  validation failed'
+            self.log_info(f"{test_case_name}: null  validation for file {file_path} completed successfully!")
+        except Exception as e:
+            self.log_error(str(e))
+            pytest.fail(str(e))
 
