@@ -95,7 +95,7 @@ class TestDataQuality:
     def test_null_stores_data_from_oracle_to_stag(self,connect_to_oracledb):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
-            self.dq_val_util.validate_duplicates_in_file(
+            self.dq_val_util.validate_nulls_in_file(
                  test_case_name=test_case_name
                 ,file_type='csv'
                 ,file_path='testData/sales_data_s3.csv'
@@ -108,7 +108,7 @@ class TestDataQuality:
     def test_null_for_product_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
-            self.dq_val_util.validate_duplicates_in_file(
+            self.dq_val_util.validate_nulls_in_file(
                  test_case_name=test_case_name
                 ,file_type='csv'
                 ,file_path='testData/product_data_from_linux.csv'
@@ -121,7 +121,7 @@ class TestDataQuality:
     def test_null_for_inventory_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
-            self.dq_val_util.validate_duplicates_in_file(
+            self.dq_val_util.validate_nulls_in_file(
                  test_case_name=test_case_name
                 ,file_type='xml'
                 ,file_path='testData/inventory_data.xml'
@@ -135,7 +135,7 @@ class TestDataQuality:
     def test_null_for_supplier_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
-            self.dq_val_util.validate_duplicates_in_file(
+            self.dq_val_util.validate_nulls_in_file(
                  test_case_name=test_case_name
                 ,file_type='json'
                 ,file_path='testData/supplier_data.json'

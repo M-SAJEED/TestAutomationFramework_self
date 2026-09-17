@@ -36,6 +36,30 @@ class BaseUtility:
     def log_error(self,message):
         logger.error(message)
 
+    def sql_to_pandas_dtype(self,sql_type: str):
+        sql_type = sql_type.upper().strip()
+
+        if sql_type.startswith("INT"):
+            return "Int64"  # nullable integer
+        elif sql_type.startswith("DECIMAL") or sql_type.startswith("NUMERIC"):
+            return "float64"
+        elif sql_type.startswith("DATE"):
+            return "datetime64[ns]"
+        elif sql_type.startswith("VARCHAR") or sql_type.startswith("CHAR") or sql_type.startswith("TEXT"):
+            return "string"
+        elif sql_type.startswith("BOOLEAN") or sql_type.startswith("BOOL"):
+            return "boolean"
+        else:
+            return "object"
+
+    def to_pandas_dtype(self,expected_dtypes):
+        pandas_dtypes = {
+            col: self.sql_to_pandas_dtype(dtype)
+            for col, dtype in expected_dtypes.items()
+        }
+        return pandas_dtypes
+
+
 
 class ValidationUtility(BaseUtility):
 
