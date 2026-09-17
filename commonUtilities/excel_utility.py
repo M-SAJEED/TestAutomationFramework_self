@@ -1,17 +1,16 @@
 import pandas as pd
 
-class ExcelUtility:
+class MyExcelUtility:
 
-    def get_table_schema(excel_path, table_name):
+    def get_table_schema(self,excel_path, table_name):
         df = pd.read_excel(excel_path)
+        print(df.head())
 
         schema = (
-            df[df["table_name"].str.strip().str.lower() == table_name.lower()]
-            .set_index("column_name")["dtype"]
+            df[df['table_name'].str.strip().str.lower() == table_name.lower()]
+            .set_index('column_name')["data_type"]
             .to_dict()
         )
 
         return schema
 
-    schema = get_table_schema("metadata.xlsx", "fact_sales")
-    print(schema)

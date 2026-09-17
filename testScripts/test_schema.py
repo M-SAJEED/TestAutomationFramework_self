@@ -3,11 +3,13 @@
 #change table names and expected columns list
 import inspect
 from commonUtilities.utility import *
+from commonUtilities.excel_utility import *
 
 
 @pytest.mark.usefixtures('connect_to_mysqldb')
 class TestSchema:
     schema_validation_utility = SchemaValidationUtitily()
+    my_excel_utility = MyExcelUtility()
     #columns check test cases -----------------------------------------------------
     def test_columns_for_monthly_sales_summary(self,connect_to_mysqldb):
         try:
@@ -64,15 +66,20 @@ class TestSchema:
 
 
 #Datatypes check test cases -----------------------------------------------------
-    def test_dtypes_for_monthly_sales_summary(self,connect_to_mysqldb):
-        try:
-            expected_dtypes = {'product_id':'INT',
+    '''expected_dtypes = {'product_id':'INT',
                                 'month':'INT',
                                 'year':'INT',
                                 'total_sales':'DECIMAL(10,2)'
                                }
-            expected_pandas_dtypes = self.schema_validation_utility.to_pandas_dtype(expected_dtypes)
+                               '''
+
+
+    def test_dtypes_for_monthly_sales_summary(self,connect_to_mysqldb):
+        try:
+            expected_dtypes = self.my_excel_utility.get_table_schema(excel_path='testData/data_dictionary.xlsx',table_name='monthly_sales_summary')
             test_case_name = inspect.currentframe().f_code.co_name
+            expected_pandas_dtypes = self.schema_validation_utility.to_pandas_dtype(expected_dtypes)
+
             test_case_name = inspect.currentframe().f_code.co_name
             self.schema_validation_utility.validate_datatype_of_col(
                 test_case_name=test_case_name,
@@ -85,13 +92,8 @@ class TestSchema:
 
     def test_dtypes_for_fact_sales(self,connect_to_mysqldb):
         try:
-            expected_dtypes = {'sales_id':'INT',
-                                'product_id':'INT',
-                                'store_id':'INT',
-                                'quantity':'INT',
-                                'total_sales':'DECIMAL(10,2)',
-                                'sale_date':'DATE'
-                                }
+            expected_dtypes = self.my_excel_utility.get_table_schema(excel_path='testData/data_dictionary.xlsx',
+                                                                     table_name='fact_sales')
             expected_pandas_dtypes = self.schema_validation_utility.to_pandas_dtype(expected_dtypes)
             test_case_name = inspect.currentframe().f_code.co_name
             self.schema_validation_utility.validate_datatype_of_col(
@@ -105,11 +107,8 @@ class TestSchema:
 
     def test_dtypes_for_fact_inventory(self,connect_to_mysqldb):
         try:
-            expected_dtypes = {'product_id':'INT',
-                                'store_id':'INT',
-                                'quantity_on_hand':'INT',
-                                'last_updated':'DATE',
-                                }
+            expected_dtypes = self.my_excel_utility.get_table_schema(excel_path='testData/data_dictionary.xlsx',
+                                                                     table_name='fact_inventory')
             expected_pandas_dtypes = self.schema_validation_utility.to_pandas_dtype(expected_dtypes)
             test_case_name = inspect.currentframe().f_code.co_name
             self.schema_validation_utility.validate_datatype_of_col(
@@ -123,9 +122,8 @@ class TestSchema:
 
     def test_dtypes_for_inventory_level_by_stores(self,connect_to_mysqldb):
         try:
-            expected_dtypes = {'store_id':'INT',
-                                'total_inventory':'INT',
-                                }
+            expected_dtypes = self.my_excel_utility.get_table_schema(excel_path='testData/data_dictionary.xlsx',
+                                                                     table_name='inventory_levels_by_store')
             expected_pandas_dtypes = self.schema_validation_utility.to_pandas_dtype(expected_dtypes)
             test_case_name = inspect.currentframe().f_code.co_name
             self.schema_validation_utility.validate_datatype_of_col(

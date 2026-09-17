@@ -40,11 +40,11 @@ class BaseUtility:
         sql_type = sql_type.upper().strip()
 
         if sql_type.startswith("INT"):
-            return "Int64"  # nullable integer
+            return "int64"  # nullable integer
         elif sql_type.startswith("DECIMAL") or sql_type.startswith("NUMERIC"):
             return "float64"
         elif sql_type.startswith("DATE"):
-            return "datetime64[ns]"
+            return "object"  #"datetime64[ns]"
         elif sql_type.startswith("VARCHAR") or sql_type.startswith("CHAR") or sql_type.startswith("TEXT"):
             return "string"
         elif sql_type.startswith("BOOLEAN") or sql_type.startswith("BOOL"):
@@ -235,10 +235,9 @@ class SchemaValidationUtitily(BaseUtility):
             self.log_info(f"{test_case_name}: datatype Validation started for {table_name} table...")
             mismatch_dtypes = {}
             actual_df = pd.read_sql(query, actual_db)
-            print(actual_df.dtypes)
 
             for col,expect_dtype in expected_dtypes.items():
-                if actual_df[col].dtype not in expect_dtype:
+                if actual_df[col].dtype != expect_dtype:
                     mismatch_dtypes[col] =f"expected:{expect_dtype} - actual:{actual_df[col].dtype}"
             assert not mismatch_dtypes , f'datatypes mismatch: {mismatch_dtypes}'
             self.log_info(f"{test_case_name}: datatype Validation completed successfully!")
@@ -267,14 +266,18 @@ class DataQualityValidationUtility(BaseUtility):
 
     def validate_nulls_in_file(self, test_case_name, file_type, file_path, subset_col=None):
         try:
-            self.log_info(f"{test_case_name}: duplicate file validation started for {file_path}")
+            self.log_info(f"{test_case_name}: null  validation started for {file_path}")
             df = self.readfile(file_path=file_path, file_type=file_type)
             is_cols_null=False
+            null_values_col=None
             if subset_col is not None:
                 is_cols_null = df[subset_col].isnull().values.any()
+                null_values_col = df.columns[df[subset_col].isnull().any()]
             else:
                 is_cols_null = df.isnull().values.any()
-            assert not is_cols_null , f'{test_case_name}: null  validation failed'
+                null_values_col = df.columns[df.isnull().any()].tolist()
+            print(df.columns)
+            assert not is_cols_null , f'{test_case_name}: null  validation failed ,null values in columns {null_values_col}'
             self.log_info(f"{test_case_name}: null  validation for file {file_path} completed successfully!")
         except Exception as e:
             self.log_error(str(e))

@@ -100,7 +100,7 @@ class TestDataTransformation:
 
     def test_transform_Aggregator_Inventory(self,connect_to_mysqldb,):
         try:
-            expected_query = """select store_id,sum(quantity_on_hand) astotal_inventory from stag_inventory group by store_id"""
+            expected_query = """select store_id,sum(quantity_on_hand) as total_inventory from stag_inventory group by store_id"""
             actual_query = """select * from aggregated_inventory_level"""
             test_case_name = inspect.currentframe().f_code.co_name
             self.validation_utility.execute_validation(
