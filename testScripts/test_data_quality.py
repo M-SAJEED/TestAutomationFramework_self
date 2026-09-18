@@ -9,7 +9,7 @@ class TestDataQuality:
     dq_val_util = DataQualityValidationUtility()
 
     #check duplicates in input files ---------------------------------
-
+    @pytest.mark.dataquality
     def test_duplicates_for_sales_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -23,6 +23,7 @@ class TestDataQuality:
             pytest.fail()
 
     ## reading from oracle db
+    @pytest.mark.dataquality
     @pytest.mark.skip
     def test_extract_stores_data_from_oracle_to_stag(self,connect_to_oracledb):
         try:
@@ -36,6 +37,7 @@ class TestDataQuality:
         except Exception as e:
             pytest.fail()
 
+    @pytest.mark.dataquality
     #@pytest.mark.skip
     def test_duplicates_for_product_file(self):
         try:
@@ -50,6 +52,7 @@ class TestDataQuality:
             pytest.fail()
 
     #@pytest.mark.skip
+    @pytest.mark.dataquality
     def test_duplicates_for_inventory_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -64,6 +67,7 @@ class TestDataQuality:
 
 
     #@pytest.mark.skip
+    @pytest.mark.dataquality
     def test_duplicates_for_supplier_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -77,7 +81,7 @@ class TestDataQuality:
             pytest.fail()
 
 #check null checks in input files ---------------------------------
-
+    @pytest.mark.dataquality
     def test_null_for_sales_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -91,6 +95,7 @@ class TestDataQuality:
             pytest.fail()
 
     ## reading from oracle db
+    @pytest.mark.dataquality
     @pytest.mark.skip
     def test_null_stores_data_from_oracle_to_stag(self,connect_to_oracledb):
         try:
@@ -105,6 +110,7 @@ class TestDataQuality:
             pytest.fail()
 
     #@pytest.mark.skip
+    @pytest.mark.dataquality
     def test_null_for_product_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -118,6 +124,7 @@ class TestDataQuality:
             pytest.fail()
 
     #@pytest.mark.skip
+    @pytest.mark.dataquality
     def test_null_for_inventory_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -132,6 +139,7 @@ class TestDataQuality:
 
 
     #@pytest.mark.skip
+    @pytest.mark.dataquality
     def test_null_for_supplier_file(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name

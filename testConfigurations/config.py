@@ -19,8 +19,8 @@ MYSQL_DATABASE = 'self_capstone_project'
 
 
 #Linux server details
-LINUX_HOSTNAME = "192.168.0.6"
-LINUX_USERNAME = "etlqalabs"
+LINUX_HOSTNAME = "192.168.0.4"
+LINUX_USERNAME = "sajeed"
 LINUX_PASSWORD = "root"
-LINUX_REMOTE_FILE_PATH = "/home/etlqalabs/product_data.csv"
-LOCAL_FILE_PATH ="Sources/product_data_from_linux_ju8.csv"
+LINUX_REMOTE_FILE_PATH = "/home/sajeed/product_data.csv"
+LOCAL_FILE_PATH ="testData/product_data_from_linux.csv"

@@ -1,0 +1,113 @@
+INFO     commonUtilities.utility:utility.py:38 connecting to mysql server...
+INFO     commonUtilities.utility:utility.py:38 mysql server connected.
+INFO     commonUtilities.utility:utility.py:38 connecting to oracle server...
+INFO     commonUtilities.utility:utility.py:38 oracle server connected.
+INFO     commonUtilities.utility:utility.py:38 selected  FILE_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_extract_data_for_sales_file_to_stage: Validation started...
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/sales_data_s3.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/sales_data_s3.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 test_extract_data_for_sales_file_to_stage: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_extract_stores_data_from_oracle_to_stag: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_extract_stores_data_from_oracle_to_stag: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  FILE_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_extract_product_data_from_file_to_stag: Validation started...
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/product_data_from_linux.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/product_data_from_linux.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 test_extract_product_data_from_file_to_stag: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  FILE_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_extract_inventory_data_from_file_to_stag: Validation started...
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/inventory_data.xml filetypexml
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/inventory_data.xml filetypexml
+INFO     commonUtilities.utility:utility.py:38 test_extract_inventory_data_from_file_to_stag: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  FILE_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_extract_supplier_data_from_file_to_stag: Validation started...
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/supplier_data.json filetypejson
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/supplier_data.json filetypejson
+INFO     commonUtilities.utility:utility.py:38 test_extract_supplier_data_from_file_to_stag: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 connecting to mysql server...
+INFO     commonUtilities.utility:utility.py:38 mysql server connected.
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_data_loading_for_monthly_sales_summary: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_data_loading_for_monthly_sales_summary: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_data_loadin_for_fact_sales: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_data_loadin_for_fact_sales: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_data_loading_for_fact_inventory: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_data_loading_for_fact_inventory: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_data_loading_for_inventory_levl_by_stores: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_data_loading_for_inventory_levl_by_stores: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 connecting to mysql server...
+INFO     commonUtilities.utility:utility.py:38 mysql server connected.
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_sales_file: duplicate  validation started for file testData/sales_data_s3.csv
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/sales_data_s3.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/sales_data_s3.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_sales_file: duplicate validation for file testData/sales_data_s3.csv completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_product_file: duplicate  validation started for file testData/product_data_from_linux.csv
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/product_data_from_linux.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/product_data_from_linux.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_product_file: duplicate validation for file testData/product_data_from_linux.csv completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_inventory_file: duplicate  validation started for file testData/inventory_data.xml
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/inventory_data.xml filetypexml
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/inventory_data.xml filetypexml
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_inventory_file: duplicate validation for file testData/inventory_data.xml completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_supplier_file: duplicate  validation started for file testData/supplier_data.json
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/supplier_data.json filetypejson
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/supplier_data.json filetypejson
+INFO     commonUtilities.utility:utility.py:38 test_duplicates_for_supplier_file: duplicate validation for file testData/supplier_data.json completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_null_for_sales_file: null  validation started for testData/sales_data_s3.csv
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/sales_data_s3.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/sales_data_s3.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 test_null_for_sales_file: null  validation for file testData/sales_data_s3.csv completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_null_for_product_file: null  validation started for testData/product_data_from_linux.csv
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/product_data_from_linux.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/product_data_from_linux.csv filetypecsv
+INFO     commonUtilities.utility:utility.py:38 test_null_for_product_file: null  validation for file testData/product_data_from_linux.csv completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_null_for_inventory_file: null  validation started for testData/inventory_data.xml
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/inventory_data.xml filetypexml
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/inventory_data.xml filetypexml
+INFO     commonUtilities.utility:utility.py:38 test_null_for_inventory_file: null  validation for file testData/inventory_data.xml completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_null_for_supplier_file: null  validation started for testData/supplier_data.json
+INFO     commonUtilities.utility:utility.py:38 started reading file testData/supplier_data.json filetypejson
+INFO     commonUtilities.utility:utility.py:38 completed reading file testData/supplier_data.json filetypejson
+INFO     commonUtilities.utility:utility.py:38 test_null_for_supplier_file: null  validation for file testData/supplier_data.json completed successfully!
+INFO     commonUtilities.utility:utility.py:38 connecting to mysql server...
+INFO     commonUtilities.utility:utility.py:38 mysql server connected.
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_transform_Filter_Sales: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_transform_Filter_Sales: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_transform_Router_High_Sales: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_transform_Router_High_Sales: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_transform_Router_Low_Sales: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_transform_Router_Low_Sales: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_transform_Aggregator_Sales: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_transform_Aggregator_Sales: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_transform_joiner_sales_product_stores: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_transform_joiner_sales_product_stores: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 selected  DB_TO_DB validation type.
+INFO     commonUtilities.utility:utility.py:38 test_transform_Aggregator_Inventory: Validation started...
+INFO     commonUtilities.utility:utility.py:38 test_transform_Aggregator_Inventory: Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 connecting to mysql server...
+INFO     commonUtilities.utility:utility.py:38 mysql server connected.
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_monthly_sales_summary: column Validation started for monthly_sales_summary table...
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_monthly_sales_summary: column Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_fact_sales: column Validation started for fact_sales table...
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_fact_sales: column Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_fact_inventory: column Validation started for fact_inventory table...
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_fact_inventory: column Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_inventory_level_by_stores: column Validation started for inventory_levels_by_store table...
+INFO     commonUtilities.utility:utility.py:38 test_columns_for_inventory_level_by_stores: column Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_monthly_sales_summary: datatype Validation started for monthly_sales_summary table...
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_monthly_sales_summary: datatype Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_fact_sales: datatype Validation started for fact_sales table...
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_fact_sales: datatype Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_fact_inventory: datatype Validation started for fact_inventory table...
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_fact_inventory: datatype Validation completed successfully!
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_inventory_level_by_stores: datatype Validation started for inventory_levels_by_store table...
+INFO     commonUtilities.utility:utility.py:38 test_dtypes_for_inventory_level_by_stores: datatype Validation completed successfully!

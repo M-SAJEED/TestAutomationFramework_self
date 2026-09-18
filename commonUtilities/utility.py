@@ -2,6 +2,8 @@ import pandas as pd
 import logging
 import datetime as dt
 import pytest
+import paramiko
+from testConfigurations.config import LINUX_HOSTNAME, LINUX_USERNAME, LINUX_PASSWORD,LINUX_REMOTE_FILE_PATH, LOCAL_FILE_PATH
 
 logging.basicConfig(filename=f"logs/logfile_{dt.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
                     ,format = '%(asctime)s-%(levelname)s-%(message)s'
@@ -26,6 +28,8 @@ class BaseUtility:
             raise ValueError(f"invalid file type{file_type}")
         self.log_info(f"completed reading file {file_path} filetype{file_type}")
         return df
+
+
 
     def readfile(self,file_type,file_path):
         return self.__readfile(file_type,file_path)
@@ -58,6 +62,19 @@ class BaseUtility:
             for col, dtype in expected_dtypes.items()
         }
         return pandas_dtypes
+
+    def linux_utility_download_file_from_linux_server(self):
+        try:
+            logger.info("Linux file download started..")
+            ssh_client = paramiko.SSHClient()
+            ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            ssh_client.connect(LINUX_HOSTNAME, username=LINUX_USERNAME, password=LINUX_PASSWORD)
+            sftp = ssh_client.open_sftp()
+            sftp.get(LINUX_REMOTE_FILE_PATH, LOCAL_FILE_PATH)
+            sftp.close()
+            logger.info("Linux file download completed..")
+        except Exception as e:
+            logger.error(f"Linux file download failed {e}")
 
 
 
@@ -276,7 +293,6 @@ class DataQualityValidationUtility(BaseUtility):
             else:
                 is_cols_null = df.isnull().values.any()
                 null_values_col = df.columns[df.isnull().any()].tolist()
-            print(df.columns)
             assert not is_cols_null , f'{test_case_name}: null  validation failed ,null values in columns {null_values_col}'
             self.log_info(f"{test_case_name}: null  validation for file {file_path} completed successfully!")
         except Exception as e:
