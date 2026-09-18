@@ -1,0 +1,113 @@
+2026-09-18 15:52:24,281-INFO-connecting to mysql server...
+2026-09-18 15:52:24,466-INFO-mysql server connected.
+2026-09-18 15:52:24,466-INFO-connecting to oracle server...
+2026-09-18 15:52:25,028-INFO-oracle server connected.
+2026-09-18 15:52:25,028-INFO-selected  FILE_TO_DB validation type.
+2026-09-18 15:52:25,029-INFO-test_extract_data_for_sales_file_to_stage: Validation started...
+2026-09-18 15:52:25,029-INFO-started reading file testData/sales_data_s3.csv filetypecsv
+2026-09-18 15:52:25,039-INFO-completed reading file testData/sales_data_s3.csv filetypecsv
+2026-09-18 15:52:25,119-INFO-test_extract_data_for_sales_file_to_stage: Validation completed successfully!
+2026-09-18 15:52:25,228-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:25,228-INFO-test_extract_stores_data_from_oracle_to_stag: Validation started...
+2026-09-18 15:52:25,250-INFO-test_extract_stores_data_from_oracle_to_stag: Validation completed successfully!
+2026-09-18 15:52:25,355-INFO-selected  FILE_TO_DB validation type.
+2026-09-18 15:52:25,355-INFO-test_extract_product_data_from_file_to_stag: Validation started...
+2026-09-18 15:52:25,355-INFO-started reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-18 15:52:25,357-INFO-completed reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-18 15:52:25,377-INFO-test_extract_product_data_from_file_to_stag: Validation completed successfully!
+2026-09-18 15:52:25,496-INFO-selected  FILE_TO_DB validation type.
+2026-09-18 15:52:25,496-INFO-test_extract_inventory_data_from_file_to_stag: Validation started...
+2026-09-18 15:52:25,497-INFO-started reading file testData/inventory_data.xml filetypexml
+2026-09-18 15:52:25,500-INFO-completed reading file testData/inventory_data.xml filetypexml
+2026-09-18 15:52:25,511-INFO-test_extract_inventory_data_from_file_to_stag: Validation completed successfully!
+2026-09-18 15:52:25,601-INFO-selected  FILE_TO_DB validation type.
+2026-09-18 15:52:25,601-INFO-test_extract_supplier_data_from_file_to_stag: Validation started...
+2026-09-18 15:52:25,601-INFO-started reading file testData/supplier_data.json filetypejson
+2026-09-18 15:52:25,608-INFO-completed reading file testData/supplier_data.json filetypejson
+2026-09-18 15:52:25,625-INFO-test_extract_supplier_data_from_file_to_stag: Validation completed successfully!
+2026-09-18 15:52:25,709-INFO-connecting to mysql server...
+2026-09-18 15:52:25,750-INFO-mysql server connected.
+2026-09-18 15:52:25,750-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:25,751-INFO-test_data_loading_for_monthly_sales_summary: Validation started...
+2026-09-18 15:52:25,772-INFO-test_data_loading_for_monthly_sales_summary: Validation completed successfully!
+2026-09-18 15:52:25,879-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:25,880-INFO-test_data_loadin_for_fact_sales: Validation started...
+2026-09-18 15:52:25,901-INFO-test_data_loadin_for_fact_sales: Validation completed successfully!
+2026-09-18 15:52:25,988-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:25,989-INFO-test_data_loading_for_fact_inventory: Validation started...
+2026-09-18 15:52:26,001-INFO-test_data_loading_for_fact_inventory: Validation completed successfully!
+2026-09-18 15:52:26,087-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:26,087-INFO-test_data_loading_for_inventory_levl_by_stores: Validation started...
+2026-09-18 15:52:26,104-INFO-test_data_loading_for_inventory_levl_by_stores: Validation completed successfully!
+2026-09-18 15:52:26,169-INFO-connecting to mysql server...
+2026-09-18 15:52:26,201-INFO-mysql server connected.
+2026-09-18 15:52:26,201-INFO-test_duplicates_for_sales_file: duplicate  validation started for file testData/sales_data_s3.csv
+2026-09-18 15:52:26,202-INFO-started reading file testData/sales_data_s3.csv filetypecsv
+2026-09-18 15:52:26,203-INFO-completed reading file testData/sales_data_s3.csv filetypecsv
+2026-09-18 15:52:26,205-INFO-test_duplicates_for_sales_file: duplicate validation for file testData/sales_data_s3.csv completed successfully!
+2026-09-18 15:52:26,332-INFO-test_duplicates_for_product_file: duplicate  validation started for file testData/product_data_from_linux.csv
+2026-09-18 15:52:26,332-INFO-started reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-18 15:52:26,334-INFO-completed reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-18 15:52:26,336-INFO-test_duplicates_for_product_file: duplicate validation for file testData/product_data_from_linux.csv completed successfully!
+2026-09-18 15:52:26,443-INFO-test_duplicates_for_inventory_file: duplicate  validation started for file testData/inventory_data.xml
+2026-09-18 15:52:26,443-INFO-started reading file testData/inventory_data.xml filetypexml
+2026-09-18 15:52:26,445-INFO-completed reading file testData/inventory_data.xml filetypexml
+2026-09-18 15:52:26,446-INFO-test_duplicates_for_inventory_file: duplicate validation for file testData/inventory_data.xml completed successfully!
+2026-09-18 15:52:26,538-INFO-test_duplicates_for_supplier_file: duplicate  validation started for file testData/supplier_data.json
+2026-09-18 15:52:26,538-INFO-started reading file testData/supplier_data.json filetypejson
+2026-09-18 15:52:26,542-INFO-completed reading file testData/supplier_data.json filetypejson
+2026-09-18 15:52:26,543-INFO-test_duplicates_for_supplier_file: duplicate validation for file testData/supplier_data.json completed successfully!
+2026-09-18 15:52:26,655-INFO-test_null_for_sales_file: null  validation started for testData/sales_data_s3.csv
+2026-09-18 15:52:26,655-INFO-started reading file testData/sales_data_s3.csv filetypecsv
+2026-09-18 15:52:26,657-INFO-completed reading file testData/sales_data_s3.csv filetypecsv
+2026-09-18 15:52:26,658-INFO-test_null_for_sales_file: null  validation for file testData/sales_data_s3.csv completed successfully!
+2026-09-18 15:52:26,766-INFO-test_null_for_product_file: null  validation started for testData/product_data_from_linux.csv
+2026-09-18 15:52:26,766-INFO-started reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-18 15:52:26,768-INFO-completed reading file testData/product_data_from_linux.csv filetypecsv
+2026-09-18 15:52:26,769-INFO-test_null_for_product_file: null  validation for file testData/product_data_from_linux.csv completed successfully!
+2026-09-18 15:52:26,885-INFO-test_null_for_inventory_file: null  validation started for testData/inventory_data.xml
+2026-09-18 15:52:26,885-INFO-started reading file testData/inventory_data.xml filetypexml
+2026-09-18 15:52:26,889-INFO-completed reading file testData/inventory_data.xml filetypexml
+2026-09-18 15:52:26,890-INFO-test_null_for_inventory_file: null  validation for file testData/inventory_data.xml completed successfully!
+2026-09-18 15:52:26,982-INFO-test_null_for_supplier_file: null  validation started for testData/supplier_data.json
+2026-09-18 15:52:26,982-INFO-started reading file testData/supplier_data.json filetypejson
+2026-09-18 15:52:26,986-INFO-completed reading file testData/supplier_data.json filetypejson
+2026-09-18 15:52:26,987-INFO-test_null_for_supplier_file: null  validation for file testData/supplier_data.json completed successfully!
+2026-09-18 15:52:27,084-INFO-connecting to mysql server...
+2026-09-18 15:52:27,116-INFO-mysql server connected.
+2026-09-18 15:52:27,116-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:27,116-INFO-test_transform_Filter_Sales: Validation started...
+2026-09-18 15:52:27,136-INFO-test_transform_Filter_Sales: Validation completed successfully!
+2026-09-18 15:52:27,206-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:27,206-INFO-test_transform_Router_High_Sales: Validation started...
+2026-09-18 15:52:27,217-INFO-test_transform_Router_High_Sales: Validation completed successfully!
+2026-09-18 15:52:27,309-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:27,309-INFO-test_transform_Router_Low_Sales: Validation started...
+2026-09-18 15:52:27,323-INFO-test_transform_Router_Low_Sales: Validation completed successfully!
+2026-09-18 15:52:27,426-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:27,427-INFO-test_transform_Aggregator_Sales: Validation started...
+2026-09-18 15:52:27,450-INFO-test_transform_Aggregator_Sales: Validation completed successfully!
+2026-09-18 15:52:27,545-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:27,545-INFO-test_transform_joiner_sales_product_stores: Validation started...
+2026-09-18 15:52:27,569-INFO-test_transform_joiner_sales_product_stores: Validation completed successfully!
+2026-09-18 15:52:27,650-INFO-selected  DB_TO_DB validation type.
+2026-09-18 15:52:27,650-INFO-test_transform_Aggregator_Inventory: Validation started...
+2026-09-18 15:52:27,659-INFO-test_transform_Aggregator_Inventory: Validation completed successfully!
+2026-09-18 15:52:27,744-INFO-connecting to mysql server...
+2026-09-18 15:52:27,781-INFO-mysql server connected.
+2026-09-18 15:52:27,782-INFO-test_columns_for_monthly_sales_summary: column Validation started for monthly_sales_summary table...
+2026-09-18 15:52:27,785-INFO-test_columns_for_monthly_sales_summary: column Validation completed successfully!
+2026-09-18 15:52:27,884-INFO-test_columns_for_fact_sales: column Validation started for fact_sales table...
+2026-09-18 15:52:27,889-INFO-test_columns_for_fact_sales: column Validation completed successfully!
+2026-09-18 15:52:28,013-INFO-test_columns_for_fact_inventory: column Validation started for fact_inventory table...
+2026-09-18 15:52:28,015-INFO-test_columns_for_fact_inventory: column Validation completed successfully!
+2026-09-18 15:52:28,101-INFO-test_columns_for_inventory_level_by_stores: column Validation started for inventory_levels_by_store table...
+2026-09-18 15:52:28,104-INFO-test_columns_for_inventory_level_by_stores: column Validation completed successfully!
+2026-09-18 15:52:28,180-INFO-test_dtypes_for_monthly_sales_summary: datatype Validation started for monthly_sales_summary table...
+2026-09-18 15:52:28,182-INFO-test_dtypes_for_monthly_sales_summary: datatype Validation completed successfully!
+2026-09-18 15:52:28,277-INFO-test_dtypes_for_fact_sales: datatype Validation started for fact_sales table...
+2026-09-18 15:52:28,280-INFO-test_dtypes_for_fact_sales: datatype Validation completed successfully!
+2026-09-18 15:52:28,358-INFO-test_dtypes_for_fact_inventory: datatype Validation started for fact_inventory table...
+2026-09-18 15:52:28,360-INFO-test_dtypes_for_fact_inventory: datatype Validation completed successfully!
+2026-09-18 15:52:28,450-INFO-test_dtypes_for_inventory_level_by_stores: datatype Validation started for inventory_levels_by_store table...
+2026-09-18 15:52:28,452-INFO-test_dtypes_for_inventory_level_by_stores: datatype Validation completed successfully!
